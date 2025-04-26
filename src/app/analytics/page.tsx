@@ -82,11 +82,11 @@ const AnalyticsPage = () => {
   const [dailyTaskData, setDailyTaskData] = useState([]);
   const [completionTrend, setCompletionTrend] = useState([]);
 
-  // ✅ Only generate random data on the client to avoid SSR mismatch
-  // useEffect(() => {
-  //   setDailyTaskData(generateDailyTaskData());
-  //   setCompletionTrend(generateCompletionTrendData());
-  // }, []);
+  ✅ Only generate random data on the client to avoid SSR mismatch
+  useEffect(() => {
+    setDailyTaskData(generateDailyTaskData());
+    setCompletionTrend(generateCompletionTrendData());
+  }, []);
 
   const tasksByStatus = getTaskData();
   const tasksByPriority = getPriorityData();
