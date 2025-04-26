@@ -9,7 +9,6 @@ import {
   getPriorityData,
 } from "@/data/mockTasks";
 import { Card, CardContent } from "@mui/material";
-import { format } from "date-fns";
 import {
   CartesianGrid,
   Legend,
@@ -24,28 +23,7 @@ import {
 } from "recharts";
 
 // ✅ Move all dynamic data generation into the component using useEffect
-const generateDailyTaskData = () => {
-  const data = [];
-  const today = new Date();
 
-  for (let i = 6; i >= 0; i--) {
-    const date = new Date(today);
-    date.setDate(date.getDate() - i);
-
-    const todoCount = Math.floor(Math.random() * 5) + 2;
-    const inProgressCount = Math.floor(Math.random() * 4) + 1;
-    const doneCount = Math.floor(Math.random() * 6) + 1;
-
-    data.push({
-      date: format(date, "MMM dd"),
-      Todo: todoCount,
-      "In Progress": inProgressCount,
-      Done: doneCount,
-    });
-  }
-
-  return data;
-};
 
 const generateCompletionTrendData = () => {
   const data = [];
@@ -79,15 +57,7 @@ const calculateUserProductivity = () => {
 
 // ✅ Capitalize the component name
 const AnalyticsPage = () => {
-  const [dailyTaskData, setDailyTaskData] = useState([]);
-  const [completionTrend, setCompletionTrend] = useState([]);
-
-  ✅ Only generate random data on the client to avoid SSR mismatch
-  useEffect(() => {
-    setDailyTaskData(generateDailyTaskData());
-    setCompletionTrend(generateCompletionTrendData());
-  }, []);
-
+ 
   const tasksByStatus = getTaskData();
   const tasksByPriority = getPriorityData();
   const userProductivity = calculateUserProductivity();
@@ -106,63 +76,76 @@ const AnalyticsPage = () => {
         <ChartWidget title="Tasks by Priority" data={tasksByPriority} type="bar" />
       </div>
 
-      {/* Show only if data has loaded */}
-      {dailyTaskData.length > 0 && (
-        <Card className="mb-8">
-          <div className="p-6">
-            <h2 className="text-xl font-semibold mb-2">Daily Task Activity</h2>
-            <p className="text-sm text-muted-foreground mb-4">
-              Task status distribution over the past week
-            </p>
-          </div>
-          <CardContent>
-            <div className="h-80">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={dailyTaskData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="date" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line type="monotone" dataKey="Todo" stroke="#3b82f6" activeDot={{ r: 8 }} />
-                  <Line type="monotone" dataKey="In Progress" stroke="#eab308" />
-                  <Line type="monotone" dataKey="Done" stroke="#22c55e" />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
-      )}
+      {/* Static Daily Task Activity Chart */}
+<Card className="mb-8">
+  <div className="p-6">
+    <h2 className="text-xl font-semibold mb-2">Daily Task Activity</h2>
+    <p className="text-sm text-muted-foreground mb-4">
+      Task status distribution over the past week
+    </p>
+  </div>
+  <CardContent>
+    <div className="h-80">
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={[
+          { date: "Apr 20", Todo: 4, "In Progress": 2, Done: 3 },
+          { date: "Apr 21", Todo: 6, "In Progress": 1, Done: 5 },
+          { date: "Apr 22", Todo: 5, "In Progress": 3, Done: 2 },
+          { date: "Apr 23", Todo: 3, "In Progress": 4, Done: 4 },
+          { date: "Apr 24", Todo: 7, "In Progress": 2, Done: 6 },
+          { date: "Apr 25", Todo: 4, "In Progress": 3, Done: 5 },
+          { date: "Apr 26", Todo: 5, "In Progress": 2, Done: 7 }
+        ]}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="Todo" stroke="#3b82f6" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="In Progress" stroke="#eab308" />
+          <Line type="monotone" dataKey="Done" stroke="#22c55e" />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  </CardContent>
+</Card>
 
-      {completionTrend.length > 0 && (
-        <Card className="mb-8">
-          <div className="p-6">
-            <h2 className="text-xl font-semibold mb-2">Task Completion Trend</h2>
-            <p className="text-sm text-muted-foreground mb-4">
-              Cumulative completed tasks over time
-            </p>
-          </div>
-          <CardContent>
-            <div className="h-80">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={completionTrend}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="date" />
-                  <YAxis />
-                  <Tooltip />
-                  <Area
-                    type="monotone"
-                    dataKey="Completed Tasks"
-                    stroke="#8884d8"
-                    fill="#8884d8"
-                    fillOpacity={0.3}
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
-      )}
+{/* Static Task Completion Trend Chart */}
+<Card className="mb-8">
+  <div className="p-6">
+    <h2 className="text-xl font-semibold mb-2">Task Completion Trend</h2>
+    <p className="text-sm text-muted-foreground mb-4">
+      Cumulative completed tasks over time
+    </p>
+  </div>
+  <CardContent>
+    <div className="h-80">
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={[
+          { date: "Mar 27", "Completed Tasks": 12 },
+          { date: "Apr 01", "Completed Tasks": 17 },
+          { date: "Apr 06", "Completed Tasks": 22 },
+          { date: "Apr 11", "Completed Tasks": 28 },
+          { date: "Apr 16", "Completed Tasks": 35 },
+          { date: "Apr 21", "Completed Tasks": 41 },
+          { date: "Apr 26", "Completed Tasks": 48 }
+        ]}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <YAxis />
+          <Tooltip />
+          <Area
+            type="monotone"
+            dataKey="Completed Tasks"
+            stroke="#8884d8"
+            fill="#8884d8"
+            fillOpacity={0.3}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  </CardContent>
+</Card>
 
       <div className="mb-8">
         <h2 className="text-xl font-semibold mb-4">Team Performance</h2>
