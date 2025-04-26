@@ -9,7 +9,7 @@ import {
   getPriorityData,
 } from "@/data/mockTasks";
 import { Card, CardContent } from "@mui/material";
-import { format } from "date-fns";
+import { format } from "react-day-picker";
 import {
   CartesianGrid,
   Legend,
