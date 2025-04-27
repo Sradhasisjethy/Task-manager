@@ -1,7 +1,7 @@
 // src/components/dashboard/ChartWidget.tsx
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip,BarChart,Bar, XAxis,YAxis} from 'recharts';
-import { Card, CardContent, CardHeader, Box } from "@mui/material";
+import { Card, CardContent, CardHeader } from "@mui/material";
 
 interface ChartData {
     name: string;

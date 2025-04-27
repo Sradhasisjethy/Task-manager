@@ -20,19 +20,21 @@ import {
   AreaChart,
   Area,
 } from "recharts";
-
-// Functions for data generation
 const generateDailyTaskData = () => {
-  // Implementation remains the same
+  return staticTaskData;
 };
 
 const generateCompletionTrendData = () => {
-  // Implementation remains the same  
+  return staticCompletionData;
 };
 
 const calculateUserProductivity = () => {
-  // Implementation remains the same
+  return {
+    completed: 85,
+    total: 100,
+  };
 };
+
 
 // Static data for SSR
 const staticTaskData = [

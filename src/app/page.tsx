@@ -15,10 +15,8 @@ export default function Dashboard() {
   const [priorityFilter, setPriorityFilter] = useState('All');
 
   // Calculate stats for dashboard
-  const totalTasks = getTotalTasks(mockTasks);
   const tasksDueToday = getTasksDueToday(mockTasks);
   const overdueTasks = getOverdueTasks(mockTasks);
-  const highPriorityTasks = getHighPriorityTasks(mockTasks);
 
   // Prepare chart data
   const statusChartData = useMemo(() => {
