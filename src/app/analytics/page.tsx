@@ -4,12 +4,10 @@ import React, { useState, useEffect } from "react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import ChartWidget from "@/components/dashboard/ChartWidget";
 import {
-  mockTasks,
   getTaskData,
   getPriorityData,
 } from "@/data/mockTasks";
 import { Card, CardContent } from "@mui/material";
-import { format } from "date-fns";
 import {
   CartesianGrid,
   Legend,
