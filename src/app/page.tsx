@@ -6,7 +6,7 @@ import StatCard from '../components/dashboard/StatCard';
 import ChartWidget from '../components/dashboard/ChartWidget';
 import TaskFilterBar from '../components/dashboard/TaskFilterBar';
 import TaskDataTable from '../components/dashboard/TaskDataTable';
-import { mockTasks, getTasksByStatus, getTasksByPriority, getTotalTasks, getTasksDueToday, getOverdueTasks, getHighPriorityTasks } from '../data/mockTasks';
+import { mockTasks, getTasksByStatus, getTasksByPriority, getTasksDueToday, getOverdueTasks} from '../data/mockTasks';
 
 export default function Dashboard() {
   // State for filters

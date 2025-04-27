@@ -3,10 +3,7 @@
 import React, { useState, useEffect } from "react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import ChartWidget from "@/components/dashboard/ChartWidget";
-import {
-  getTaskData,
-  getPriorityData,
-} from "@/data/mockTasks";
+import { getTaskData, getPriorityData } from "@/data/mockTasks";
 import { Card, CardContent } from "@mui/material";
 import {
   CartesianGrid,
@@ -20,21 +17,6 @@ import {
   AreaChart,
   Area,
 } from "recharts";
-const generateDailyTaskData = () => {
-  return staticTaskData;
-};
-
-const generateCompletionTrendData = () => {
-  return staticCompletionData;
-};
-
-const calculateUserProductivity = () => {
-  return {
-    completed: 85,
-    total: 100,
-  };
-};
-
 
 // Static data for SSR
 const staticTaskData = [
@@ -58,24 +40,16 @@ const staticCompletionData = [
 ];
 
 const AnalyticsPage = () => {
-  // Use static data for initial state to prevent hydration mismatch
-  const [dailyTaskData, setDailyTaskData] = useState(staticTaskData);
-  const [completionTrend, setCompletionTrend] = useState(staticCompletionData);
   const [isClient, setIsClient] = useState(false);
 
-  // Mark when component is mounted on client
+  // Set the client-side state
   useEffect(() => {
     setIsClient(true);
-    
-    // If you want dynamic data, uncomment these:
-    // setDailyTaskData(generateDailyTaskData());
-    // setCompletionTrend(generateCompletionTrendData());
   }, []);
 
-  // Use static data for these too if they have random elements
+  // Fetch the necessary data
   const tasksByStatus = getTaskData();
   const tasksByPriority = getPriorityData();
-  const userProductivity = calculateUserProductivity();
 
   return (
     <DashboardLayout>
@@ -91,61 +65,63 @@ const AnalyticsPage = () => {
         <ChartWidget title="Tasks by Priority" data={tasksByPriority} type="bar" />
       </div>
 
-      {/* Static charts - no conditioning on client state */}
-      <Card className="mb-8">
-        <div className="p-6">
-          <h2 className="text-xl font-semibold mb-2">Daily Task Activity</h2>
-          <p className="text-sm text-muted-foreground mb-4">
-            Task status distribution over the past week
-          </p>
-        </div>
-        <CardContent>
-          <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={dailyTaskData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="Todo" stroke="#3b82f6" activeDot={{ r: 8 }} />
-                <Line type="monotone" dataKey="In Progress" stroke="#eab308" />
-                <Line type="monotone" dataKey="Done" stroke="#22c55e" />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </CardContent>
-      </Card>
+      {/* Static charts */}
+      {isClient && (
+        <>
+          <Card className="mb-8">
+            <div className="p-6">
+              <h2 className="text-xl font-semibold mb-2">Daily Task Activity</h2>
+              <p className="text-sm text-muted-foreground mb-4">
+                Task status distribution over the past week
+              </p>
+            </div>
+            <CardContent>
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={staticTaskData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="date" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey="Todo" stroke="#3b82f6" activeDot={{ r: 8 }} />
+                    <Line type="monotone" dataKey="In Progress" stroke="#eab308" />
+                    <Line type="monotone" dataKey="Done" stroke="#22c55e" />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
 
-      <Card className="mb-8">
-        <div className="p-6">
-          <h2 className="text-xl font-semibold mb-2">Task Completion Trend</h2>
-          <p className="text-sm text-muted-foreground mb-4">
-            Cumulative completed tasks over time
-          </p>
-        </div>
-        <CardContent>
-          <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={completionTrend}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
-                <Tooltip />
-                <Area
-                  type="monotone"
-                  dataKey="Completed Tasks"
-                  stroke="#8884d8"
-                  fill="#8884d8"
-                  fillOpacity={0.3}
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Rest of the component... */}
+          <Card className="mb-8">
+            <div className="p-6">
+              <h2 className="text-xl font-semibold mb-2">Task Completion Trend</h2>
+              <p className="text-sm text-muted-foreground mb-4">
+                Cumulative completed tasks over time
+              </p>
+            </div>
+            <CardContent>
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={staticCompletionData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="date" />
+                    <YAxis />
+                    <Tooltip />
+                    <Area
+                      type="monotone"
+                      dataKey="Completed Tasks"
+                      stroke="#8884d8"
+                      fill="#8884d8"
+                      fillOpacity={0.3}
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
+        </>
+      )}
     </DashboardLayout>
   );
 };
