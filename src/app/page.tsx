@@ -49,7 +49,7 @@ export default function Dashboard() {
     <DashboardLayout>
       {/* Page Header */}
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">TaskFlow Dashboard</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Task Manager Dashboard</h1>
         <p className="mt-1 text-sm text-gray-600">
           An overview of your tasks and project status
         </p>

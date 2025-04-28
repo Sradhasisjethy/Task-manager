@@ -22,7 +22,7 @@ const Sidebar: React.FC = () => {
         <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
           <FolderKanban className="w-5 h-5" />
         </div>
-        <span className="text-2xl font-bold">TaskFlow</span>
+        <span className="text-2xl font-bold">Task Manager</span>
       </div>
       <nav className="mt-8">
         <ul>
