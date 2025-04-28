@@ -111,12 +111,4 @@ const TeamMembers: React.FC<TeamMembersProps> = ({ members }) => {
   };
   
   export default TeamMembers;
-// const TeamMembers = () => {
-//   return (
-//     <div>
-      
-//     </div>
-//   )
-// }
 
-// export default TeamMembers
