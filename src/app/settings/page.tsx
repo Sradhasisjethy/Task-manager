@@ -25,7 +25,7 @@ const settingspage = () => {
         <p className="text-gray-500">Manage your account settings</p>
       </div>
 
-      <div>
+      <div className='display flex justify-center items-center mt-7'>
         <Tabs defaultValue="account" className="w-[700px] bg-[#0b102c] text-white p-4 rounded ">
           <TabsList className="grid w-full grid-cols-2 bg-[#0b102c] text-white border border-gray-700 rounded mb-4">
         <TabsTrigger value="account" className="text-white data-[state=active]:bg-[#0d6efd]">Account</TabsTrigger>
@@ -50,7 +50,7 @@ const settingspage = () => {
             </div>
           </CardContent>
           <CardFooter className='hover-bg'>
-            <Button>Save changes</Button>
+            <Button className="hover:bg-[#0d6efd] hover:text-white">Save changes</Button>
           </CardFooter>
         </Card>
           </TabsContent>

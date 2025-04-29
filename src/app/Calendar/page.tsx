@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
-// import { Calendar } from "@/components/ui/calendar"
+import { Calendar } from "@/components/ui/calendar"
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -45,12 +45,10 @@ const Page = () => {
           <p className="text-gray-600 mb-4">Select a date to view events.</p>
 
           {/* Uncomment this only if you need it */}
-          {/* <Calendar
-            mode="single"
-            selected={date}
-            onSelect={setDate}
-            className="rounded-md border shadow"
-          /> */}
+          <div className="display flex justify-center items-center mb-7">
+            <Calendar  />
+          </div>
+          
         </Card>
 
         <Card className="w-[350px] bg-[#0b102c] text-white border-[#0b102c] ">
