@@ -35,7 +35,7 @@ const StatusBadge: React.FC<{ status: Status }> = ({ status }) => {
 // Team member card component
 const MemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
+    <div className="bg-[#0b102c] rounded-lg shadow-md p-6 flex flex-col items-center">
       <div className="relative w-20 h-20 mb-4">
         <Image 
           src={member.avatarUrl} 
@@ -44,9 +44,9 @@ const MemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
           className="rounded-full object-cover"
         />
       </div>
-      <h3 className="text-xl font-semibold text-gray-800">{member.name}</h3>
-      <p className="text-gray-600 mb-2">{member.role}</p>
-      <p className="text-gray-500 text-sm mb-4">{member.email}</p>
+      <h3 className="text-xl font-semibold text-white">{member.name}</h3>
+      <p className="text-gray-400 mb-2">{member.role}</p>
+      <p className="text-gray-400 text-sm mb-4">{member.email}</p>
       <StatusBadge status={member.status} />
     </div>
   );
@@ -60,7 +60,7 @@ const RoleFilter: React.FC<{ roles: string[], selectedRole: string, onChange: (r
       <select 
         value={selectedRole} 
         onChange={(e) => onChange(e.target.value)}
-        className="appearance-none bg-white border border-gray-300 rounded-md py-2 pl-3 pr-10 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="appearance-none  border border-gray-300 rounded-md py-2 pl-3 pr-10 text-white bg-[#0b102c] leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         <option value="">All Roles</option>
         {roles.map(role => (
@@ -91,13 +91,14 @@ const TeamMembers: React.FC<TeamMembersProps> = ({ members }) => {
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Team Members</h1>
-            <p className="text-gray-600">Meet the TaskFlow team</p>
+            <h1 className="text-3xl font-bold text-white">Team Members</h1>
+            <p className="text-gray-400">Meet the TaskFlow team</p>
           </div>
           <RoleFilter 
             roles={allRoles} 
             selectedRole={selectedRole} 
             onChange={setSelectedRole} 
+            
           />
         </div>
         

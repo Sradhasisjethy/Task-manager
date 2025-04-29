@@ -8,9 +8,9 @@ const Page = () => {
     <DashboardLayout>
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-1">AI Assistant</h1>
-        <p className="text-gray-500">Ask questions and get AI-powered responses</p>
+        <p className="text-gray-400">Ask questions and get AI-powered responses</p>
       </div>
-      <main className="max-w-4xl mx-auto">
+      <main className="max-w-4xl mx-auto ">
         <ChatInterface tasks={mockTasks} />
       </main>
      

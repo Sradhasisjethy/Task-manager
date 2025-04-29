@@ -38,20 +38,20 @@ const TaskTableRow: React.FC<TaskTableRowProps> = ({ task }) => {
   };
 
   return (
-    <tr className="hover:bg-gray-200">
-      <td className="py-3 px-4  text-black">{task.title}</td>
-      <td className="py-3 px-4 text-gray-500">
+    <tr className="hover:bg-[#0d6efd] bg-[#0b102c]  border-[#0b102c]">
+      <td className="py-3 px-4  text-white">{task.title}</td>
+      <td className="py-3 px-4 text-white">
         <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(task.status)}`}>
           {task.status}
         </span>
       </td>
-      <td className="py-3 px-4 text-gray-500">
+      <td className="py-3 px-4 text-white">
         <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPriorityColor(task.priority)}`}>
           {task.priority}
         </span>
       </td>
-      <td className="py-3 px-4 text-gray-500">{task.dueDate}</td>
-      <td className="py-3 px-4 text-gray-500">{task.assignee || 'Unassigned'}</td>
+      <td className="py-3 px-4 text-white">{task.dueDate}</td>
+      <td className="py-3 px-4 text-white">{task.assignee || 'Unassigned'}</td>
     </tr>
   );
 };

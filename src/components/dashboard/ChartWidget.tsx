@@ -16,38 +16,13 @@ interface ChartWidgetProps {
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
+
+
 const ChartWidget: React.FC<ChartWidgetProps> = ({ data, title ,type, className }) => {
-//   return (
-//     <div className="bg-white rounded-lg shadow-md p-6">
-//       <h3 className="text-lg font-medium text-gray mb-4">{title}</h3>
-//       <div className="h-64">
-//         <ResponsiveContainer width="100%" height="100%">
-//           <PieChart>
-//             <Pie
-//               data={data}
-//               cx="50%"
-//               cy="50%"
-//               labelLine={false}
-//               outerRadius={80}
-//               fill="#8884d8"
-//               dataKey="value"
-//               label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-//             >
-//               {data.map((entry, index) => (
-//                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-//               ))}
-//             </Pie>
-//             <Tooltip />
-//             <Legend />
-//           </PieChart>
-//         </ResponsiveContainer>
-//       </div>
-//     </div>
-//   );
 const renderChart = () => {
     if (type === "pie") {
       return (
-        <ResponsiveContainer width="100%" height={250}>
+        <ResponsiveContainer width="100%" height={280}>
           <PieChart>
             <Pie
               data={data}
@@ -55,6 +30,7 @@ const renderChart = () => {
               cy="50%"
               labelLine={false}
               outerRadius={80}
+              innerRadius={60}
               fill="#8884d8"
               dataKey="value"
               label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
@@ -75,20 +51,37 @@ const renderChart = () => {
     
     if (type === "bar") {
       return (
-        <ResponsiveContainer width="100%" height={250}>
-          <BarChart data={data}>
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip 
-              formatter={(value: number) => [`${value}`, 'Count']}
-              contentStyle={{ backgroundColor: 'white', borderRadius: '8px', border: '1px solid #e2e8f0' }}
-            />
-            <Bar dataKey="value" fill="#8884d8">
-              {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Bar>
-          </BarChart>
+        <ResponsiveContainer width="100%" height={280}>
+                  <BarChart 
+          data={data}
+          margin={{ top: 10, right: 30, left: 20, bottom: 10 }}
+        >
+          
+          <XAxis 
+            dataKey="name" 
+            axisLine={false} 
+            tickLine={false}
+            tick={{ fill: '#9CA3AF' }}
+          />
+          <YAxis 
+            axisLine={false} 
+            tickLine={false}
+            tick={{ fill: '#9CA3AF' }}
+          />
+          
+          <Bar 
+            dataKey="value" 
+            barSize={30} 
+            radius={[4, 4, 0, 0]}
+          >
+            {data.map((entry, index) => (
+              <Cell 
+                key={`cell-${index}`} 
+                fill={COLORS[index % COLORS.length]} 
+              />
+            ))}
+          </Bar>
+        </BarChart>
         </ResponsiveContainer>
       );
     }
@@ -97,8 +90,8 @@ const renderChart = () => {
   };
   return (
     <Card className={className}>
-      <CardHeader title={title} />
-      <CardContent>
+      <CardHeader className='bg-[#0b102c] text-white' title={title} />
+      <CardContent className='bg-[#0b102c] text-white'>
         {renderChart()}
       </CardContent>
     </Card>

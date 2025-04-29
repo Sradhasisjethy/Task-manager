@@ -49,8 +49,8 @@ export default function Dashboard() {
     <DashboardLayout>
       {/* Page Header */}
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Task Manager Dashboard</h1>
-        <p className="mt-1 text-sm text-gray-600">
+        <h1 className="text-3xl font-bold text-white">Task Manager Dashboard</h1>
+        <p className="mt-1 text-sm text-gray-400">
           An overview of your tasks and project status
         </p>
       </div>
@@ -63,6 +63,7 @@ export default function Dashboard() {
           icon={ListTodo}
           description="Total number of tasks in the system"
           trend={{ value: 12, isPositive: true }}
+          iconColor="#0d6efd"
         />
         <StatCard
           title="Tasks Due Today"
@@ -70,6 +71,7 @@ export default function Dashboard() {
           icon={Clock}
           description="Tasks that need to be completed today"
           trend={{ value: 5, isPositive: false }}
+          iconColor="#198754"
         />
         <StatCard
           title="Overdue Tasks"
@@ -77,6 +79,7 @@ export default function Dashboard() {
           icon={AlertTriangle}
           description="Tasks that are past their due date"
           trend={{ value: 2, isPositive: false }}
+          iconColor="#dc3545"
         />
         <StatCard
           title="Completed Tasks"
@@ -84,19 +87,20 @@ export default function Dashboard() {
           icon={CheckCircle}
           description="Tasks that have been completed"
           trend={{ value: 8, isPositive: true }}
+          iconColor="#fd7e14"
         />
       </div>
 
 
       {/* Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8 text-gray-800 font-bold">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8 text-gray-600 font-bold">
         <ChartWidget data={statusChartData} title="Tasks by Status"type="pie" />
         <ChartWidget data={priorityChartData} title="Tasks by Priority"type="bar" />
       </div>
 
       {/* Task Table Section */}
       <div className="mb-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Task List</h2>
+        <h2 className="text-xl font-semibold text-white mb-4">Task List</h2>
         <TaskFilterBar
           titleFilter={titleFilter}
           setTitleFilter={setTitleFilter}

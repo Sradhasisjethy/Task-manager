@@ -23,10 +23,10 @@ const TaskFilterBar: React.FC<TaskFilterBarProps> = ({
   const priorities: (TaskPriority | 'All')[] = ['All', 'Low', 'Medium', 'High'];
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+    <div className="bg-[#0b102c] text-white rounded-lg shadow-md p-4 mb-6">
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex-1">
-          <label htmlFor="title-filter" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="title-filter" className="block text-sm font-medium text-white mb-1">
             Filter by Title
           </label>
           <input
@@ -35,19 +35,19 @@ const TaskFilterBar: React.FC<TaskFilterBarProps> = ({
             value={titleFilter}
             onChange={(e) => setTitleFilter(e.target.value)}
             placeholder="Search tasks..."
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-800"
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-300"
           />
         </div>
 
         <div className="w-full md:w-48">
-          <label htmlFor="status-filter" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="status-filter" className="block text-sm font-medium text-white mb-1">
             Status
           </label>
           <select
-            id="status-filter"
+            id="status-filter "
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-800"
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-300 bg-[#0b102c] "
           >
             {statuses.map((status) => (
               <option key={status} value={status}>
@@ -57,15 +57,15 @@ const TaskFilterBar: React.FC<TaskFilterBarProps> = ({
           </select>
         </div>
 
-        <div className="w-full md:w-48">
-          <label htmlFor="priority-filter" className="block text-sm font-medium text-gray-700 mb-1">
+        <div className="w-full md:w-48 ">
+          <label htmlFor="priority-filter" className="block text-sm font-medium text-white mb-1">
             Priority
           </label>
           <select
             id="priority-filter"
             value={priorityFilter}
             onChange={(e) => setPriorityFilter(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-800"
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-300 bg-[#0b102c] "
           >
             {priorities.map((priority) => (
               <option key={priority} value={priority}>

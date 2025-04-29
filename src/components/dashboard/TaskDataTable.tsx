@@ -13,19 +13,19 @@ const TaskDataTable: React.FC<TaskDataTableProps> = ({ tasks }) => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th scope="col" className="px-4 py-3 text-left text-xs font-bold text-black uppercase tracking-wider">
+              <th scope="col" className="px-4 py-3 text-left text-xs font-bold bg-[#0b102c] text-white uppercase tracking-wider">
                 Task
               </th>
-              <th scope="col" className="px-4 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+              <th scope="col" className="px-4 py-3 text-left text-xs font-bold bg-[#0b102c] text-white uppercase tracking-wider">
                 Status
               </th>
-              <th scope="col" className="px-4 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+              <th scope="col" className="px-4 py-3 text-left text-xs font-bold bg-[#0b102c] text-white uppercase tracking-wider">
                 Priority
               </th>
-              <th scope="col" className="px-4 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+              <th scope="col" className="px-4 py-3 text-left text-xs font-bold bg-[#0b102c] text-white uppercase tracking-wider">
                 Due Date
               </th>
-              <th scope="col" className="px-4 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+              <th scope="col" className="px-4 py-3 text-left text-xs font-bold bg-[#0b102c] text-white uppercase tracking-wider">
                 Assignee
               </th>
             </tr>
@@ -35,7 +35,7 @@ const TaskDataTable: React.FC<TaskDataTableProps> = ({ tasks }) => {
               tasks.map((task) => <TaskTableRow key={task.id} task={task} />)
             ) : (
               <tr>
-                <td colSpan={5} className="px-4 py-4 text-center text-gray-500">
+                <td colSpan={5} className="px-4 py-4 text-center bg-[#0b102c] text-white">
                   No tasks found matching your filters.
                 </td>
               </tr>

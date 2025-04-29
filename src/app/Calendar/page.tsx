@@ -31,16 +31,16 @@ const Page = () => {
         <p className="text-gray-500">View and manage your schedule</p>
       </div>
 
-      <Card className="mb-6 p-4 shadow-md">
+      <Card className="mb-6 p-4 shadow-md bg-[#0b102c] text-white border-[#0b102c]">
         <h2 className="text-xl font-semibold mb-4">Upcoming Events</h2>
         <p className="text-gray-600">No events scheduled for today.</p>
       </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <Card className="lg:col-span-2 bg-white p-4 shadow-md">
+        <Card className="lg:col-span-2 bg-[#0b102c] text-white border-[#0b102c] p-4 shadow-md">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold">Calendar</h2>
-            <Button variant="outline">Today</Button>
+            <Button className="bg-[#0d6efd]">Today</Button>
           </div>
           <p className="text-gray-600 mb-4">Select a date to view events.</p>
 
@@ -53,8 +53,8 @@ const Page = () => {
           /> */}
         </Card>
 
-        <Card className="w-[350px]">
-          <CardHeader>
+        <Card className="w-[350px] bg-[#0b102c] text-white border-[#0b102c] ">
+          <CardHeader >
             <CardTitle>Schedule a new event</CardTitle>
           </CardHeader>
           <CardContent>
@@ -71,7 +71,7 @@ const Page = () => {
                 <div className="flex space-x-4">
                   <div className="flex flex-col space-y-1.5 w-1/2">
                     <Label htmlFor="recurrence">Recurrence</Label>
-                    <Select>
+                    <Select >
                       <SelectTrigger id="recurrence">
                         <SelectValue placeholder="Select" />
                       </SelectTrigger>
@@ -102,8 +102,8 @@ const Page = () => {
             </form>
           </CardContent>
           <CardFooter className="flex justify-between">
-            <Button variant="outline">Cancel</Button>
-            <Button>Schedule Event</Button>
+            <Button className=" bg-[#0d6efd]">Cancel</Button>
+            <Button className="bg-[#0d6efd]">Schedule Event</Button>
           </CardFooter>
         </Card>
       </div>

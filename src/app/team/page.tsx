@@ -52,7 +52,7 @@ const teamMembers = [
 const teampage = () => {
   return (
     <DashboardLayout>
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen text-white">
       <TeamMembers members={teamMembers} />
     </main>
     </DashboardLayout>

@@ -26,20 +26,20 @@ const settingspage = () => {
       </div>
 
       <div>
-        <Tabs defaultValue="account" className="w-[700px] ">
-          <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
+        <Tabs defaultValue="account" className="w-[700px] bg-[#0b102c] text-white p-4 rounded ">
+          <TabsList className="grid w-full grid-cols-2 bg-[#0b102c] text-white border border-gray-700 rounded mb-4">
+        <TabsTrigger value="account" className="text-white data-[state=active]:bg-[#0d6efd]">Account</TabsTrigger>
+        <TabsTrigger value="password" className="text-white data-[state=active]:bg-[#0d6efd]">Password</TabsTrigger>
           </TabsList>
           <TabsContent value="account">
-        <Card>
-          <CardHeader>
-            <CardTitle>Account</CardTitle>
+        <Card className='bg-[#0b102c]' >
+          <CardHeader >
+            <CardTitle className=' text-white'>Account</CardTitle>
             <CardDescription>
           Make changes to your account here. Click save when youre done.
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-2">
+          <CardContent className="space-y-2 text-white">
             <div className="space-y-1">
           <Label htmlFor="name">Name</Label>
           <Input id="name" defaultValue="User Name" />
@@ -49,20 +49,20 @@ const settingspage = () => {
           <Input id="username" defaultValue="Username or Email" />
             </div>
           </CardContent>
-          <CardFooter>
+          <CardFooter className='hover-bg'>
             <Button>Save changes</Button>
           </CardFooter>
         </Card>
           </TabsContent>
           <TabsContent value="password">
-        <Card>
+        <Card  className='bg-[#0b102c]'>
           <CardHeader>
-            <CardTitle>Password</CardTitle>
+            <CardTitle className='text-white'>Password</CardTitle>
             <CardDescription>
           Change your password here. After saving, you ll be logged out.
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-2">
+          <CardContent className="space-y-2 text-white">
             <div className="space-y-1">
           <Label htmlFor="current">Current password</Label>
           <Input id="current" type="password" />
@@ -72,8 +72,8 @@ const settingspage = () => {
           <Input id="new" type="password" />
             </div>
           </CardContent>
-          <CardFooter>
-            <Button>Save password</Button>
+          <CardFooter >
+          <Button className="hover:bg-[#0d6efd] hover:text-white">Save password</Button>
           </CardFooter>
         </Card>
           </TabsContent>
