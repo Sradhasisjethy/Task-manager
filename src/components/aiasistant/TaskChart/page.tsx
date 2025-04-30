@@ -1,5 +1,18 @@
 import React from 'react'
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { 
+  PieChart, 
+  Pie, 
+  Cell, 
+  BarChart, 
+  Bar, 
+  LineChart,
+  Line,
+  XAxis, 
+  YAxis, 
+  Tooltip, 
+  Legend, 
+  ResponsiveContainer 
+} from 'recharts';
 
 interface TaskChartProps {
   type: string;
@@ -34,6 +47,32 @@ const TaskChart = ({ type, data }: TaskChartProps) => {
     );
   }
   
+  if (type === 'donut') {
+    return (
+      <ResponsiveContainer width="100%" height={300}>
+        <PieChart>
+          <Pie
+            data={data}
+            cx="50%"
+            cy="50%"
+            labelLine={false}
+            outerRadius={80}
+            innerRadius={40}
+            fill="#8884d8"
+            dataKey="value"
+            label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+          >
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
+          <Tooltip />
+          <Legend />
+        </PieChart>
+      </ResponsiveContainer>
+    );
+  }
+  
   if (type === 'bar') {
     return (
       <ResponsiveContainer width="100%" height={300}>
@@ -52,6 +91,33 @@ const TaskChart = ({ type, data }: TaskChartProps) => {
           <Legend />
           <Bar dataKey="value" fill="#8884d8" />
         </BarChart>
+      </ResponsiveContainer>
+    );
+  }
+  
+  if (type === 'line') {
+    return (
+      <ResponsiveContainer width="100%" height={300}>
+        <LineChart
+          data={data}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line 
+            type="monotone" 
+            dataKey="value" 
+            stroke="#8884d8" 
+            activeDot={{ r: 8 }} 
+          />
+        </LineChart>
       </ResponsiveContainer>
     );
   }

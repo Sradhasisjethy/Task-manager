@@ -17,11 +17,69 @@ interface QueryResponse {
   chartData?: any;
 }
 
+// Utility function to group tasks by due date categories
+function getTasksByDueDate(tasks: Task[]) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  
+  const nextWeek = new Date(today);
+  nextWeek.setDate(nextWeek.getDate() + 7);
+  
+  const categories = {
+    'Overdue': 0,
+    'Today': 0,
+    'Tomorrow': 0,
+    'This Week': 0,
+    'Later': 0
+  };
+  
+  tasks.forEach(task => {
+    const dueDate = new Date(task.dueDate);
+    dueDate.setHours(0, 0, 0, 0);
+    
+    if (dueDate < today) {
+      categories['Overdue']++;
+    } else if (dueDate.getTime() === today.getTime()) {
+      categories['Today']++;
+    } else if (dueDate.getTime() === tomorrow.getTime()) {
+      categories['Tomorrow']++;
+    } else if (dueDate <= nextWeek) {
+      categories['This Week']++;
+    } else {
+      categories['Later']++;
+    }
+  });
+  
+  return categories;
+}
+
+// Function to convert due date data to chart format
+function getDueDateChartData(tasks: Task[]) {
+  const dueDateCounts = getTasksByDueDate(tasks);
+  
+  return Object.entries(dueDateCounts).map(([name, value]) => ({
+    name,
+    value
+  }));
+}
+
 export function processQuery(query: string, tasks: Task[]): QueryResponse {
   const lowerQuery = query.toLowerCase();
   
   // Check for chart requests
   if (lowerQuery.includes('chart') || lowerQuery.includes('diagram') || lowerQuery.includes('graph') || lowerQuery.includes('visual')) {
+    // Due date chart
+    if (lowerQuery.includes('due') || lowerQuery.includes('date') || lowerQuery.includes('deadline')) {
+      return {
+        text: "Here's a chart showing tasks by due date:",
+        chartType: 'donut',
+        chartData: getDueDateChartData(tasks)
+      };
+    }
+    
     // Status chart
     if (lowerQuery.includes('status')) {
       return {
@@ -34,8 +92,8 @@ export function processQuery(query: string, tasks: Task[]): QueryResponse {
     // Priority chart
     if (lowerQuery.includes('priority')) {
       return {
-        text: "Here's a pie chart showing tasks by priority:",
-        chartType: 'pie',
+        text: "Here's a line chart showing tasks by priority:",
+        chartType: 'line',
         chartData: getPriorityData()
       };
     }
@@ -91,12 +149,13 @@ export function processQuery(query: string, tasks: Task[]): QueryResponse {
   
   // Due date queries
   if (lowerQuery.includes('due') || lowerQuery.includes('date')) {
-    const today = new Date().toISOString().split('T')[0];
-    const dueTodayCount = getTasksDueToday(tasks);
-    const overdueCount = getOverdueTasks(tasks);
+    const dueDateCounts = getTasksByDueDate(tasks);
+    const dueDateText = Object.entries(dueDateCounts)
+      .map(([category, count]) => `${category}: ${count} tasks`)
+      .join(', ');
     
     return {
-      text: `You have ${dueTodayCount} tasks due today and ${overdueCount} overdue tasks.`
+      text: `Tasks by due date: ${dueDateText}`
     };
   }
   

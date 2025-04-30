@@ -252,22 +252,28 @@ const Page = ({ tasks = [] }: ChatPageProps) => {
             onClick={() => setInput("Show me a chart of tasks by status")}
             className="bg-[#0b102c] text-white hover:bg-[#0d6efd] hover:text-white px-3 py-1.5 rounded-full text-sm transition-colors border border-gray-600"
           >
-             Chart of tasks by status
+            Chart of tasks by status
           </button>
           <button 
-      onClick={() => setInput("What are the high-priority tasks?")}
-      className="bg-[#0b102c] text-white hover:bg-[#0d6efd] hover:text-white px-3 py-1.5 rounded-full text-sm transition-colors border border-gray-600"
-    >
-      High-priority tasks
+            onClick={() => setInput("Show me a chart of tasks by due date")}
+            className="bg-[#0b102c] text-white hover:bg-[#0d6efd] hover:text-white px-3 py-1.5 rounded-full text-sm transition-colors border border-gray-600"
+          >
+            Due date chart
           </button>
           <button 
-      onClick={() => setInput("What is the weather today?")}
-      className="bg-[#0b102c] text-white hover:bg-[#0d6efd] hover:text-white px-3 py-1.5 rounded-full text-sm transition-colors border border-gray-600"
-    >
-      AI general question
+            onClick={() => setInput("What are the high-priority tasks?")}
+            className="bg-[#0b102c] text-white hover:bg-[#0d6efd] hover:text-white px-3 py-1.5 rounded-full text-sm transition-colors border border-gray-600"
+          >
+            High-priority tasks
           </button>
+          <button 
+            onClick={() => setInput("What is the weather today?")}
+            className="bg-[#0b102c] text-white hover:bg-[#0d6efd] hover:text-white px-3 py-1.5 rounded-full text-sm transition-colors border border-gray-600"
+          >
+            AI general question
+          </button>
+        </div>
       </div>
-    </div>
 
       
       {/* Input area */}
